@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
         # 如果是LineEdit控件获取内容是text() ；而TextEdit控件获取内容函数为toPlainText()
         if  self.__ui.name.text()=='吴宇亮' and  self.__ui.password.text()=='21312121':
             self.__ui.signin.setText("密码正确，登录成功")
-            url = 'https://cn.bing.com/'
+            url = 'https://yliangwu.github.io/resume.io/'
             # 网页加载方法
             self.__ui.webview.load(QUrl(url))
         else:

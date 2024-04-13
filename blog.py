@@ -10,22 +10,24 @@ from PyQt5 import QtWebEngineWidgets, QtCore, QtWidgets
 class LoginWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.width = 800
-        self.length = 600
+        self.width = int(800*1.5)
+        self.length = int(600*1.5)
         self.setWindowTitle("登录")
-        self.setGeometry(100, 100, self.width, self.length)
+        self.setGeometry(100, 100, self.width, self.length) #初始位置
         self.set_background()
 
         self.username_label = QLabel("用户名:", self)
         self.username_label.move(self.width // 4+40, self.length // 4)
 
         self.name = QLineEdit(self)
+        self.name.setText("吴宇亮")
         self.name.move(self.width // 4 + 60 + 40, self.length // 4)
 
-        self.username_label = QLabel("密码:", self)
+        self.username_label = QLabel("学号:", self)
         self.username_label.move(self.width // 4 + 210, self.length // 4)
 
         self.password = QLineEdit(self)
+        self.password.setText("21312121")
         self.password.move(self.width // 4 + 250, self.length // 4)
 
         self.login_button = QPushButton("登录", self)
@@ -37,37 +39,21 @@ class LoginWindow(QMainWindow):
         self.exit_button.clicked.connect(self.close)
 
         self.textBrowser=QtWidgets.QTextBrowser(self)
-        self.textBrowser.setText("请输入账号密码")
+        self.textBrowser.setText("请输入账号密码。(方便测试，此处默认给出用户密码。\n另外，网站已经挂载到github_page，因此不需要localhost激活。)")
         self.textBrowser.setGeometry(QtCore.QRect(self.width // 4 + 60, self.length // 4 + 150,256,101))
         self.login_button.clicked.connect(self.geturl)
         # 设置密码隐藏和回车效果，注意returnPressed是LineEdit的方法
         self.password.setEchoMode(QLineEdit.Password)
         self.password.returnPressed.connect(self.geturl)
 
-
-    # def setupUi(self):
-    #     self.webview = QtWebEngineWidgets.QWebEngineView(self.login_button)
-    #     # 设计视图大小尺寸
-    #     self.webview.setGeometry(QtCore.QRect(10, 60, 800, 500))
-    #     # 视图的拉伸效果
-    #     sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-    #     sizePolicy.setHorizontalStretch(0)  # 水平拉伸因子为0，水平方向锁扩展以填充额外的空间
-    #     sizePolicy.setVerticalStretch(4)
-    #     # 竖直拉伸因子为8，这意味着如果布局中有额外的垂直空间，QWebEngineView 控件将在垂直方向上扩        展，并且其垂直扩展的优先级高于其他控件。
-    #     sizePolicy.setHeightForWidth(self.webview.sizePolicy().hasHeightForWidth())  # 是否有一个为宽度设置的高度策略
-    #     self.webview.setSizePolicy(sizePolicy)
-    #     self.webview.setObjectName("webview")
-    #     self.setCentralWidget(self.login_button)
-
-
     def geturl(self):
         # 如果是LineEdit控件获取内容是text() ；而TextEdit控件获取内容函数为toPlainText()
         if self.name.text()=='吴宇亮' and  self.password.text()=='21312121':
             self.textBrowser.setText("密码正确，登录成功")
             self.setWindowTitle("21312121吴宇亮 blog欢迎您")
-            time.sleep(1)
+            time.sleep(0.1)
 
-            url = 'https://blog.csdn.net/m0_67441224?type=blog'
+            url = 'https://yliangwu.github.io/resume.io/'
             # 网页加载方法
             self.webview = QtWebEngineWidgets.QWebEngineView(self)
             # 设计视图大小尺寸
